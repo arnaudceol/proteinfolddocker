@@ -16,7 +16,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     build-essential \
     cmake \
-    cuda-command-line-tools-11-4 \
+    cuda-command-line-tools-11-8 \
     git \
     hmmer \
     kalign \
