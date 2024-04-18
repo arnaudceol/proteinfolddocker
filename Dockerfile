@@ -9,7 +9,7 @@ LABEL authors="Athanasios Baltzis, Jose Espinosa-Carrasco, Leila Mansouri" \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Add env variables
-ENV LD_LIBRARY_PATH="/conda/lib:/usr/local/cuda-11.1/lib64:$LD_LIBRARY_PATH"
+ENV LD_LIBRARY_PATH="/conda/lib:/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH"
 ENV PATH="/conda/bin:$PATH"
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
@@ -50,7 +50,7 @@ RUN wget -q -P /tmp \
 # Install conda packages
 RUN /conda/bin/conda install -y -c conda-forge \
     openmm=7.7.0 \
-    cudatoolkit==11.1.1 \
+    cudatoolkit==12.1.0 \
     pdbfixer \
     pip \
     python=3.10 \
