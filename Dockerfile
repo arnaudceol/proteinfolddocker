@@ -9,14 +9,14 @@ LABEL authors="Athanasios Baltzis, Jose Espinosa-Carrasco, Leila Mansouri" \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Add env variables
-ENV LD_LIBRARY_PATH="/conda/lib:/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH"
+ENV LD_LIBRARY_PATH="/conda/lib:/usr/local/cuda-12.4.1/lib64:$LD_LIBRARY_PATH"
 ENV PATH="/conda/bin:$PATH"
 
 # RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     build-essential \
     cmake \
-    cuda-command-line-tools-11-8 \
+    cuda-command-line-tools-12-4 \
     git \
     hmmer \
     kalign \
@@ -50,7 +50,7 @@ RUN wget -q -P /tmp \
 # Install conda packages
 RUN /conda/bin/conda install -y -c conda-forge \
     openmm=7.7.0 \
-    cudatoolkit==11.8.0 \
+    cudatoolkit==12.4.1 \
     pdbfixer \
     pip \
     python=3.10 \
@@ -64,7 +64,7 @@ RUN pip3 install --upgrade pip --no-cache-dir \
     && pip3 install -r /app/alphafold/requirements.txt --no-cache-dir \
     && pip3 install --upgrade --no-cache-dir \
     jax==0.3.25 \
-    jaxlib==0.3.25+cuda11.cudnn805 \
+    jaxlib==0.3.25+cuda12.cudnn805 \
     -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 RUN sed -i "s|alphafold/common/stereo_chemical_props.txt|/app/alphafold/alphafold/common/stereo_chemical_props.txt|g" /app/alphafold/alphafold/common/residue_constants.py
